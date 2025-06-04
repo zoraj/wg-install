@@ -17,9 +17,28 @@ PRIVATE_KEY_FILE="$WG_DIR/private.key"
 PUBLIC_KEY_FILE="$WG_DIR/public.key"
 WG_CONF="$WG_DIR/wg0.conf"
 
-echo "[+] Installing WireGuard..."
-sudo apt update -y
-sudo apt install -y wireguard
+# Detect OS and install WireGuard
+echo "[+] Detecting OS and installing WireGuard..."
+
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+        ubuntu|debian)
+            sudo apt update -y
+            sudo apt install -y wireguard
+            ;;
+        fedora)
+            sudo dnf install -y wireguard-tools
+            ;;
+        *)
+            echo "Unsupported OS: $ID"
+            exit 1
+            ;;
+    esac
+else
+    echo "Cannot detect OS. /etc/os-release not found."
+    exit 1
+fi
 
 echo "[+] Generating WireGuard keys..."
 sudo mkdir -p $WG_DIR
