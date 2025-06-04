@@ -1,6 +1,6 @@
 # WireGuard Client Auto Installer
 
-This repository contains a simple Bash script to automate the installation and configuration of a **WireGuard client** on a Debian-based system.
+This repository contains a simple Bash script to automate the installation and configuration of a **WireGuard client** on a Debian-based system or Fedora.
 
 ## ✅ What It Does
 
@@ -13,7 +13,7 @@ This repository contains a simple Bash script to automate the installation and c
 
 ## 🔧 Requirements
 
-- A Debian-based system (e.g., Ubuntu)
+- Tested on Debian, Ubuntu and Fedora.
 - `curl` installed
 - Root/sudo privileges
 
